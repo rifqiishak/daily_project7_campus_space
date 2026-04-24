@@ -5,6 +5,7 @@ import { createClient } from '@/lib/supabase/client'
 
 type Booking = {
     id: string
+    purpose: string
     booking_date: string
     start_time: string
     end_time: string

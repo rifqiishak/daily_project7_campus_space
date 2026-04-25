@@ -134,47 +134,58 @@ export default function MasterRoomsPage() {
         <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-4">
           <div className="bg-white rounded-2xl w-full max-w-lg p-8 shadow-2xl">
             <h2 className="text-xl font-bold mb-6">{selectedRoom ? 'Edit Ruangan' : 'Tambah Ruangan Baru'}</h2>
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <input 
-                placeholder="Nama Ruangan" 
-                className="w-full border p-3 rounded-lg" 
-                value={formData.name}
-                onChange={(e) => setFormData({...formData, name: e.target.value})}
-                required 
-              />
-              <input 
-                placeholder="Gedung" 
-                className="w-full border p-3 rounded-lg" 
-                value={formData.building}
-                onChange={(e) => setFormData({...formData, building: e.target.value})}
-                required 
-              />
-              <input 
-                type="number" 
-                placeholder="Kapasitas (Orang)" 
-                className="w-full border p-3 rounded-lg" 
-                value={formData.capacity}
-                onChange={(e) => setFormData({...formData, capacity: e.target.value})}
-                required 
-              />
-              <textarea 
-                placeholder="Fasilitas (Pisahkan dengan koma: AC, Proyektor, TV)" 
-                className="w-full border p-3 rounded-lg h-24"
-                value={formData.facilities}
-                onChange={(e) => setFormData({...formData, facilities: e.target.value})}
-                required
-              />
-              <div className="flex gap-3 pt-4">
+            <form onSubmit={handleSubmit} className="space-y-5">
+              <div>
+                <label className="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">Informasi Dasar</label>
+                <input 
+                  placeholder="Nama Ruangan (Contoh: Aula Utama)" 
+                  className="w-full border-2 border-slate-100 p-4 rounded-2xl bg-slate-50 text-slate-900 font-bold placeholder-slate-400 outline-none focus:ring-4 focus:ring-blue-500/10 focus:border-blue-600 transition-all" 
+                  value={formData.name}
+                  onChange={(e) => setFormData({...formData, name: e.target.value})}
+                  required 
+                />
+              </div>
+              <div>
+                <input 
+                  placeholder="Gedung (Contoh: GKB 1)" 
+                  className="w-full border-2 border-slate-100 p-4 rounded-2xl bg-slate-50 text-slate-900 font-bold placeholder-slate-400 outline-none focus:ring-4 focus:ring-blue-500/10 focus:border-blue-600 transition-all" 
+                  value={formData.building}
+                  onChange={(e) => setFormData({...formData, building: e.target.value})}
+                  required 
+                />
+              </div>
+              <div>
+                <label className="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">Kapasitas</label>
+                <input 
+                  type="number" 
+                  placeholder="Kapasitas (Contoh: 100)" 
+                  className="w-full border-2 border-slate-100 p-4 rounded-2xl bg-slate-50 text-slate-900 font-bold placeholder-slate-400 outline-none focus:ring-4 focus:ring-blue-500/10 focus:border-blue-600 transition-all" 
+                  value={formData.capacity}
+                  onChange={(e) => setFormData({...formData, capacity: e.target.value})}
+                  required 
+                />
+              </div>
+              <div>
+                <label className="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">Fasilitas</label>
+                <textarea 
+                  placeholder="AC, Proyektor, Sound System, dll (Pisahkan dengan koma)" 
+                  className="w-full border-2 border-slate-100 p-4 rounded-2xl bg-slate-50 text-slate-900 font-bold placeholder-slate-400 outline-none focus:ring-4 focus:ring-blue-500/10 focus:border-blue-600 transition-all h-32 resize-none"
+                  value={formData.facilities}
+                  onChange={(e) => setFormData({...formData, facilities: e.target.value})}
+                  required
+                />
+              </div>
+              <div className="flex gap-4 pt-6">
                 <button 
                   type="button" 
                   onClick={() => setIsModalOpen(false)}
-                  className="flex-1 px-4 py-3 border rounded-xl font-bold text-gray-500"
+                  className="flex-1 px-6 py-4 border-2 border-slate-100 rounded-2xl font-black text-slate-400 uppercase tracking-widest text-[11px] hover:bg-slate-50 transition-all"
                 >
                   Batal
                 </button>
                 <button 
                   type="submit"
-                  className="flex-1 px-4 py-3 bg-blue-600 text-white rounded-xl font-bold"
+                  className="flex-1 px-6 py-4 bg-blue-600 text-white rounded-2xl font-black uppercase tracking-widest text-[11px] shadow-xl shadow-blue-100 hover:bg-blue-700 active:scale-95 transition-all"
                 >
                   Simpan Ruangan
                 </button>

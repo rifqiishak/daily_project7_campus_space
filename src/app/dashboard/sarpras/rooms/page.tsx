@@ -80,14 +80,14 @@ export default function MasterRoomsPage() {
         type="danger"
       />
 
-      <div className="flex justify-between items-center mb-8">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 mb-8">
         <div>
-          <h1 className="text-2xl font-bold text-gray-800">Master Data Ruangan</h1>
-          <p className="text-gray-500">Kelola semua fasilitas dan ruangan kampus.</p>
+          <h1 className="text-2xl md:text-3xl font-black text-slate-900 tracking-tight">Master Data Ruangan</h1>
+          <p className="text-slate-500 font-bold mt-1">Kelola semua fasilitas dan ruangan kampus.</p>
         </div>
         <button 
           onClick={() => { setSelectedRoom(null); setFormData({ name: '', building: '', capacity: '', facilities: '', qr_code_token: '' }); setIsModalOpen(true); }}
-          className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-xl font-bold flex items-center gap-2 transition-all"
+          className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-2xl font-black flex items-center justify-center gap-2 transition-all shadow-lg shadow-blue-100 active:scale-95 w-full sm:w-auto text-sm"
         >
           <span>+ Tambah Ruangan</span>
         </button>

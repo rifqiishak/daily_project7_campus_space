@@ -11,6 +11,7 @@ export default function DashboardLayout({
 }: {
   children: React.ReactNode
 }) {
+  const [isMounted, setIsMounted] = useState(false)
   const [role, setRole] = useState<string | null>(null)
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
   const [loading, setLoading] = useState(true)
@@ -18,6 +19,7 @@ export default function DashboardLayout({
   const supabase = createClient()
 
   useEffect(() => {
+    setIsMounted(true)
     async function checkUser() {
       const { data: { user } } = await supabase.auth.getUser()
       
@@ -41,6 +43,8 @@ export default function DashboardLayout({
 
     checkUser()
   }, [router, supabase])
+
+  if (!isMounted) return null
 
   if (loading) {
     return (

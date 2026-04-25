@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 export default function LandingPage() {
   const supabase = createClient()
@@ -77,9 +78,13 @@ export default function LandingPage() {
     setLoading(false); 
   };
 
+  const pathname = usePathname();
+
   useEffect(() => {
-    fetchTodaySchedules();
-  }, [selectedRoom]);
+    if (pathname === '/') {
+      fetchTodaySchedules();
+    }
+  }, [pathname, selectedRoom]);
 
   const todayFormatted = new Date().toLocaleDateString('id-ID', {
     day: 'numeric', month: 'long', year: 'numeric'
@@ -96,10 +101,10 @@ export default function LandingPage() {
     <div className="min-h-screen bg-white flex flex-col font-sans selection:bg-blue-100">
       
       {/* NAVBAR */}
-      <nav className="w-full bg-white/80 backdrop-blur-md border-b border-slate-100 py-5 px-6 md:px-12 flex justify-between items-center sticky top-0 z-50">
+      <nav className="w-full bg-white/80 backdrop-blur-md border-b border-slate-100 py-4 md:py-5 px-6 md:px-12 flex justify-between items-center sticky top-0 z-50">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center text-white font-black text-2xl shadow-lg shadow-blue-200">C</div>
-          <span className="text-2xl font-black tracking-tighter text-slate-950">Campus<span className="text-blue-600">Space</span></span>
+          <div className="w-8 h-8 md:w-10 md:h-10 bg-blue-600 rounded-xl flex items-center justify-center text-white font-black text-lg md:text-2xl shadow-lg shadow-blue-200">C</div>
+          <span className="text-lg md:text-2xl font-black tracking-tighter text-slate-950">Campus<span className="text-blue-600">Space</span></span>
         </div>
         <div className="hidden md:flex gap-10 text-sm font-extrabold text-slate-500 ml-auto mr-10 uppercase tracking-widest">
           <a href="#fitur" className="hover:text-blue-600 transition-all">Fitur</a>
@@ -107,7 +112,7 @@ export default function LandingPage() {
         </div>
         <Link 
           href="/login"
-          className="bg-slate-950 hover:bg-black text-white px-8 py-3 rounded-2xl transition-all font-black text-xs uppercase tracking-widest shadow-xl shadow-slate-200 active:scale-95"
+          className="bg-slate-950 hover:bg-black text-white px-4 py-2 md:px-8 md:py-3 rounded-xl md:rounded-2xl transition-all font-black text-[10px] md:text-xs uppercase tracking-widest shadow-xl shadow-slate-200 active:scale-95 whitespace-nowrap"
         >
           SSO Login
         </Link>
@@ -115,20 +120,20 @@ export default function LandingPage() {
 
       <main className="flex-1">
         {/* HERO + LIVE UPDATE */}
-        <section className="max-w-7xl mx-auto px-6 py-12 lg:py-24 grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-center">
+        <section className="max-w-7xl mx-auto px-6 py-12 lg:py-24 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center">
           
-          <div className="space-y-8 text-center lg:text-left order-1">
-            <h1 className="text-5xl md:text-8xl font-black text-slate-950 leading-[0.9] tracking-tighter">
+          <div className="space-y-6 md:space-y-8 text-center lg:text-left order-1">
+            <h1 className="text-4xl md:text-8xl font-black text-slate-950 leading-[1.1] md:leading-[0.9] tracking-tighter">
               Pesan Ruangan. <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">Tanpa Ribet.</span>
             </h1>
-            <p className="text-lg md:text-xl text-slate-500 max-w-md leading-relaxed mx-auto lg:mx-0 font-bold">
+            <p className="text-base md:text-xl text-slate-500 max-w-md leading-relaxed mx-auto lg:mx-0 font-bold">
               Pantau ketersediaan fasilitas kampus secara real-time. Transparan, cepat, dan terintegrasi langsung dengan jadwal perkuliahan.
             </p>
             <div className="flex flex-col sm:flex-row gap-5 justify-center lg:justify-start pt-4">
               <Link 
                 href="/login"
-                className="bg-blue-600 hover:bg-blue-700 text-white font-black text-lg px-12 py-6 rounded-[2rem] shadow-2xl shadow-blue-200 transition-all active:scale-95 text-center"
+                className="bg-blue-600 hover:bg-blue-700 text-white font-black text-sm md:text-lg px-6 py-4 md:px-12 md:py-6 rounded-2xl md:rounded-[2rem] shadow-2xl shadow-blue-200 transition-all active:scale-95 text-center"
               >
                 Mulai Pinjam Sekarang
               </Link>

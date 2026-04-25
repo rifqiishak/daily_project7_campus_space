@@ -44,16 +44,14 @@ export default function KaprodiDashboard() {
       .order('start_time', { ascending: true })
 
     if (!error && data) {
-      // Supabase mengembalikan relasi sebagai array tunggal atau objek.
-      // Kita casting tipe datanya agar TypeScript tidak komplain.
       setBookings(data as unknown as BookingWithDetails[])
     }
     setIsLoading(false)
   }
 
   // 2. FUNGSI UPDATE STATUS
-  const handleUpdateStatus = async (bookingId: string, newStatus: 'approved_kaprodi' | 'rejected') => {
-    setActionLoading(bookingId) // Set loading pada baris yang spesifik
+  const handleUpdateStatus = async (bookingId: string, newStatus: 'approved' | 'rejected') => {
+    setActionLoading(bookingId)
 
     const { error } = await supabase
       .from('bookings')
@@ -61,9 +59,8 @@ export default function KaprodiDashboard() {
       .eq('id', bookingId)
 
     if (!error) {
-      // Optimistic Update: Hapus baris dari tabel UI tanpa perlu re-fetch dari database
       setBookings((prev) => prev.filter((b) => b.id !== bookingId))
-      toast.success(newStatus === 'rejected' ? 'Peminjaman ditolak.' : 'Peminjaman disetujui Kaprodi.')
+      toast.success(newStatus === 'rejected' ? 'Peminjaman ditolak.' : 'Peminjaman disetujui.')
     } else {
       toast.error('Gagal mengupdate status: ' + error.message)
     }
@@ -122,7 +119,6 @@ export default function KaprodiDashboard() {
                     {booking.purpose}
                   </td>
                   <td className="p-4 text-right space-x-2">
-                    {/* Tombol Tolak */}
                     <button
                       onClick={() => handleUpdateStatus(booking.id, 'rejected')}
                       disabled={actionLoading === booking.id}
@@ -131,9 +127,8 @@ export default function KaprodiDashboard() {
                       Tolak
                     </button>
                     
-                    {/* Tombol Setujui */}
                     <button
-                      onClick={() => handleUpdateStatus(booking.id, 'approved_kaprodi')}
+                      onClick={() => handleUpdateStatus(booking.id, 'approved')}
                       disabled={actionLoading === booking.id}
                       className="px-4 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors disabled:opacity-50"
                     >

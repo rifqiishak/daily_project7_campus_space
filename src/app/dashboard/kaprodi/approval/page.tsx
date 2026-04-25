@@ -38,7 +38,7 @@ export default function ApprovalPage() {
     }
   };
 
-  const handleAction = async (id: string, action: 'approved' | 'rejected') => {
+  const handleAction = async (id: string, action: 'approved_kaprodi' | 'rejected') => {
     try {
       const { error } = await supabase
         .from('bookings')
@@ -47,7 +47,7 @@ export default function ApprovalPage() {
 
       if (error) throw error;
       
-      toast.success(`Peminjaman berhasil di-${action === 'approved' ? 'setujui' : 'tolak'}!`);
+      toast.success(`Peminjaman berhasil ${action === 'approved_kaprodi' ? 'disetujui Kaprodi' : 'ditolak'}!`);
       fetchPendingBookings(); 
     } catch (error: any) {
       toast.error('Gagal memproses aksi: ' + error.message);
@@ -123,7 +123,7 @@ export default function ApprovalPage() {
                   Tolak
                 </button>
                 <button 
-                  onClick={() => handleAction(booking.id, 'approved')}
+                  onClick={() => handleAction(booking.id, 'approved_kaprodi')}
                   className="px-8 py-3 bg-green-600 hover:bg-green-700 text-white font-black rounded-2xl shadow-xl shadow-green-100 transition-all text-[11px] uppercase tracking-widest"
                 >
                   Setujui

@@ -79,6 +79,7 @@ export default function MasterRoomsPage() {
         cancelText="Batal"
         type="danger"
       />
+
       <div className="flex justify-between items-center mb-8">
         <div>
           <h1 className="text-2xl font-bold text-gray-800">Master Data Ruangan</h1>
@@ -132,63 +133,41 @@ export default function MasterRoomsPage() {
       {/* Modal Form */}
       {isModalOpen && (
         <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-3xl w-full max-w-lg p-8 shadow-2xl border border-slate-100">
-            <h2 className="text-2xl font-extrabold mb-8 text-slate-950 tracking-tight">{selectedRoom ? 'Edit Ruangan' : 'Tambah Ruangan Baru'}</h2>
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label className="block text-[11px] font-extrabold text-slate-500 uppercase tracking-widest mb-2.5">Informasi Dasar</label>
-                <input 
-                  placeholder="Nama Ruangan (Contoh: Aula Utama)" 
-                  className="w-full border-2 border-slate-200 p-4 rounded-2xl bg-slate-50 text-slate-950 font-bold placeholder-slate-400 outline-none focus:ring-4 focus:ring-blue-500/10 focus:border-blue-600 transition-all shadow-sm" 
-                  value={formData.name}
-                  onChange={(e) => setFormData({...formData, name: e.target.value})}
-                  required 
-                />
-              </div>
-              <div>
-                <input 
-                  placeholder="Gedung (Contoh: GKB 1)" 
-                  className="w-full border-2 border-slate-200 p-4 rounded-2xl bg-slate-50 text-slate-950 font-bold placeholder-slate-400 outline-none focus:ring-4 focus:ring-blue-500/10 focus:border-blue-600 transition-all shadow-sm" 
-                  value={formData.building}
-                  onChange={(e) => setFormData({...formData, building: e.target.value})}
-                  required 
-                />
-              </div>
-              <div>
-                <label className="block text-[11px] font-extrabold text-slate-500 uppercase tracking-widest mb-2.5">Kapasitas</label>
-                <input 
-                  type="number" 
-                  placeholder="Kapasitas (Contoh: 100)" 
-                  className="w-full border-2 border-slate-200 p-4 rounded-2xl bg-slate-50 text-slate-950 font-bold placeholder-slate-400 outline-none focus:ring-4 focus:ring-blue-500/10 focus:border-blue-600 transition-all shadow-sm" 
-                  value={formData.capacity}
-                  onChange={(e) => setFormData({...formData, capacity: e.target.value})}
-                  required 
-                />
-              </div>
-              <div>
-                <label className="block text-[11px] font-extrabold text-slate-500 uppercase tracking-widest mb-2.5">Fasilitas</label>
-                <textarea 
-                  placeholder="AC, Proyektor, Sound System, dll (Pisahkan dengan koma)" 
-                  className="w-full border-2 border-slate-200 p-4 rounded-2xl bg-slate-50 text-slate-950 font-bold placeholder-slate-400 outline-none focus:ring-4 focus:ring-blue-500/10 focus:border-blue-600 transition-all h-32 resize-none shadow-sm"
-                  value={formData.facilities}
-                  onChange={(e) => setFormData({...formData, facilities: e.target.value})}
-                  required
-                />
-              </div>
-              <div className="flex gap-4 pt-6">
-                <button 
-                  type="button" 
-                  onClick={() => setIsModalOpen(false)}
-                  className="flex-1 px-6 py-4 border-2 border-slate-200 rounded-2xl font-extrabold text-slate-600 uppercase tracking-widest text-[11px] hover:bg-slate-100 transition-all active:scale-95"
-                >
-                  Batal
-                </button>
-                <button 
-                  type="submit"
-                  className="flex-1 px-6 py-4 bg-blue-600 text-white rounded-2xl font-extrabold uppercase tracking-widest text-[11px] shadow-xl shadow-blue-200 hover:bg-blue-700 active:scale-95 transition-all"
-                >
-                  Simpan Ruangan
-                </button>
+          <div className="bg-white rounded-2xl w-full max-w-lg p-6">
+            <h2 className="text-xl font-bold mb-4">{selectedRoom ? 'Edit Ruangan' : 'Tambah Ruangan Baru'}</h2>
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <input 
+                placeholder="Nama Ruangan" 
+                className="w-full border p-2 rounded" 
+                value={formData.name}
+                onChange={(e) => setFormData({...formData, name: e.target.value})}
+                required 
+              />
+              <input 
+                placeholder="Gedung" 
+                className="w-full border p-2 rounded" 
+                value={formData.building}
+                onChange={(e) => setFormData({...formData, building: e.target.value})}
+                required 
+              />
+              <input 
+                type="number" 
+                placeholder="Kapasitas" 
+                className="w-full border p-2 rounded" 
+                value={formData.capacity}
+                onChange={(e) => setFormData({...formData, capacity: e.target.value})}
+                required 
+              />
+              <textarea 
+                placeholder="Fasilitas (Pisahkan dengan koma)" 
+                className="w-full border p-2 rounded h-24"
+                value={formData.facilities}
+                onChange={(e) => setFormData({...formData, facilities: e.target.value})}
+                required
+              />
+              <div className="flex gap-2 justify-end">
+                <button type="button" onClick={() => setIsModalOpen(false)} className="px-4 py-2 text-gray-500">Batal</button>
+                <button type="submit" className="px-4 py-2 bg-blue-600 text-white rounded font-bold">Simpan</button>
               </div>
             </form>
           </div>

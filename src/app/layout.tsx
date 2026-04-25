@@ -1,18 +1,18 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
+import { Toaster } from "sonner";
 
-const inter = Inter({
+const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-plus-jakarta",
+  weight: ['400', '500', '600', '700', '800'],
 });
 
 export const metadata: Metadata = {
   title: "CampusSpace | Sistem Manajemen Fasilitas Kampus",
-  description: "Pesan ruangan dan lapor kerusakan fasilitas kampus dengan mudah dan real-time.",
+  description: "Solusi modern peminjaman ruangan dan fasilitas kampus secara transparan dan real-time.",
 };
-
-import { Toaster } from "sonner";
 
 export default function RootLayout({
   children,
@@ -22,9 +22,9 @@ export default function RootLayout({
   return (
     <html
       lang="id"
-      className={`${inter.variable} h-full antialiased font-sans`}
+      className={`${plusJakartaSans.variable} h-full antialiased font-sans`}
     >
-      <body className="min-h-full flex flex-col bg-white text-slate-900">
+      <body className="min-h-full flex flex-col bg-white text-slate-900 font-sans">
         <Toaster richColors position="top-center" />
         {children}
       </body>
